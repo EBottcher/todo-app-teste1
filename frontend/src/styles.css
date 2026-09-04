@@ -1,0 +1,134 @@
+:root {
+  color-scheme: light;
+  font-family: Inter, Segoe UI, Arial, sans-serif;
+  line-height: 1.4;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #f8fafc;
+  color: #111827;
+}
+
+.layout {
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 1rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.panel {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.subtitle {
+  margin: 0.25rem 0 0;
+  color: #4b5563;
+}
+
+.meta {
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+
+.error {
+  color: #991b1b;
+  background: #fee2e2;
+  border: 1px solid #fecaca;
+  padding: 0.5rem;
+  border-radius: 6px;
+}
+
+.grid-form {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.row {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+label {
+  display: grid;
+  gap: 0.35rem;
+  width: 100%;
+}
+
+input,
+select,
+textarea,
+button {
+  font: inherit;
+}
+
+input,
+select,
+textarea {
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  padding: 0.5rem 0.6rem;
+}
+
+button {
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+  background: #2563eb;
+  color: white;
+  cursor: pointer;
+}
+
+button.secondary {
+  background: #6b7280;
+}
+
+button.danger {
+  background: #b91c1c;
+}
+
+button.small {
+  padding: 0.3rem 0.45rem;
+  font-size: 0.85rem;
+}
+
+.table-wrap {
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border-bottom: 1px solid #e5e7eb;
+  padding: 0.6rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.activity-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.activity-list li {
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  padding: 0.65rem;
+}
