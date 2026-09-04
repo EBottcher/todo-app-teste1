@@ -36,6 +36,23 @@ const priorityOptions: TodoPriority[] = ["Low", "Medium", "High", "Critical"];
 const recurrenceOptions: RecurrenceFrequency[] = ["None", "Daily", "Weekly", "Monthly", "Yearly"];
 const smartFilterOptions: SmartFilter[] = ["None", "Today", "Overdue", "Upcoming"];
 
+type Theme = "light" | "dark";
+
+const THEME_STORAGE_KEY = "todo-app-theme";
+
+function getInitialTheme(): Theme {
+  if (typeof window === "undefined") {
+    return "light";
+  }
+
+  const stored = window.localStorage.getItem(THEME_STORAGE_KEY);
+  if (stored === "light" || stored === "dark") {
+    return stored;
+  }
+
+  return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+}
+
 const defaultTaskForm: TaskFormState = {
   projectId: "",
   title: "",
@@ -108,6 +125,16 @@ export default function App() {
   const [tagFilter, setTagFilter] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [theme, setTheme] = useState<Theme>(getInitialTheme);
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+    window.localStorage.setItem(THEME_STORAGE_KEY, theme);
+  }, [theme]);
+
+  function toggleTheme() {
+    setTheme((previous) => (previous === "dark" ? "light" : "dark"));
+  }
 
   const selectedProjectName = useMemo(() => {
     if (!selectedProjectId) {
@@ -249,7 +276,17 @@ export default function App() {
   return (
     <main className="layout">
       <section className="panel">
-        <h1>Todo-list POC</h1>
+        <div className="row" style={{ justifyContent: "space-between" }}>
+          <h1>Todo-list POC</h1>
+          <button
+            type="button"
+            className="theme-toggle"
+            onClick={toggleTheme}
+            aria-pressed={theme === "dark"}
+          >
+            {theme === "dark" ? "☀️ Light mode" : "🌙 Dark mode"}
+          </button>
+        </div>
         <p className="subtitle">Project: {selectedProjectName}</p>
         {error ? <p className="error">{error}</p> : null}
         <p className="meta">
