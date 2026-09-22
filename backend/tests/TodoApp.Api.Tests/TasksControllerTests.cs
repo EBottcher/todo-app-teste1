@@ -78,7 +78,7 @@ public sealed class TasksControllerTests
     [InlineData(false)]
     public async Task CreateAsync_WhenServiceRejectsRequest_ReturnsProblemDetails(bool invalidOperation)
     {
-        var exception = invalidOperation
+        Exception exception = invalidOperation
             ? new InvalidOperationException("Project does not exist.")
             : new ArgumentException("Title is required.");
         var service = new TestTodoService
@@ -131,7 +131,7 @@ public sealed class TasksControllerTests
     [InlineData(false)]
     public async Task UpdateAsync_WhenServiceRejectsRequest_ReturnsProblemDetails(bool invalidOperation)
     {
-        var exception = invalidOperation
+        Exception exception = invalidOperation
             ? new InvalidOperationException("Project does not exist.")
             : new ArgumentException("Title is required.");
         var service = new TestTodoService
